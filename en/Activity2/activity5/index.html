@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Activity 2 | Question 5</title>
+    <link href="css/layout.css" rel="stylesheet"> </head>
+
+<body>
+    <div class="centerLayout">
+        <div class="container mainbg">
+            <div class="textfiled">
+                <textarea id="myanswer"></textarea>
+            </div>
+            <div class="submit"><img src="images/SUBMIT_NORMAL.png"></div>
+            <div class="reset"><img src="images/RESET_OVER_new.png"></div>
+            <div class="popup">
+                <div class="message">
+                    <p>Oops! The lemonade has spilled over! Try adding fewer ice cubes.</p>   <img src="images/CLOSE_TAB.png"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        $('.reset').click(function() {
+            location.reload();
+        });
+        $('.submit').click(function() {
+            $('.popup').css('display', 'block');
+            $('.message p').html('Notice that the value in the fourth column remains constant, that is, 10/3. This fixed value is known as the constant of proportionality. Close the tab to proceed.');
+            $('.ans-reset').attr('src', 'images/CLOSE_TAB.png');
+        });
+        $('.ans-reset').click(function() {
+            alert('next question');
+            return false;
+        });
+    });
+
+</script>
+
+</html>
