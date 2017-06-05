@@ -1,0 +1,92 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Activity 1 | Question 2</title>
+    <link href="css/layout.css" rel="stylesheet"> </head>
+
+<body>
+    <div class="centerLayout">
+        <div class="container mainbg">
+            <div class="textfiled">
+                <input type="text" id="myanswer" class="allownumericwithdecimal"> </div>
+        <div class="glass"> <img src="images/glass0.png" id="myglass"> </div>
+            <div class="submit"><img src="images/SUBMIT_NORMAL.png"></div>
+            <div class="reset"><img src="images/RESET_NORMAL_new.png"></div>
+            <div class="popup">
+<div class="message">
+                    <p>Oops! The lemonade has spilled over! Try adding fewer ice cubes.</p> <img src="images/RESET_NORMAL_new.png" class="ans-reset"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        var win = 0;
+        if (localStorage.getItem('attempt') == '') {
+            localStorage.setItem('attempt', 0);
+        }
+        $('.reset').click(function() {
+            location.reload();
+        });
+        $('.submit').click(function() {
+            if ($('#myanswer').val() <= 6) {
+                $('#myglass').attr('src', 'images/glass' + $('#myanswer').val() + '.png');
+            } else {
+                $('#myglass').attr('src', 'images/glass7.png');
+            }
+            if ($('#myanswer').val() == 6) {
+                $('.popup').css('display', 'block');
+                $('.message p').html('अच्छा किया ! आपका अनुमान सही है।');
+                $('.ans-reset').attr('src', 'images/NEXT_BUTTON_NORMAL.png');
+                win = 1;
+            } else if ($('#myanswer').val() > 6) {
+                if (localStorage.getItem('attempt') == 0) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('ओह ! आपका अनुमान गलत है। आपने बहुत सारे बर्फ के क्यूब डाल दिए ! फिर से प्रयास करने के लिए दुबारा सजायें बटन पर क्लिक करें।');
+                } else {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('ओह ! आपका अनुमान गलत है। आपको अमन का गिलास पूरा भरने के लिए बर्फ के 6 क्यूब डालने चाहिए थे। ');
+                    $('.ans-reset').attr('src', 'images/NEXT_BUTTON_NORMAL.png');
+                }
+            } else if ($('#myanswer').val() < 6) {
+                if (localStorage.getItem('attempt') == 0) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('ओह ! आपका अनुमान गलत है ! गिलास अभी भी पूरा नहीं भरा। फिर से प्रयास करने के लिए दुबारा सजायें बटन पर क्लिक करें।');
+                } else {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('ओह ! आपका अनुमान गलत है। आपको अमन का गिलास पूरा भरने के लिए बर्फ के 6 क्यूब डालने चाहिए थे।');
+                    $('.ans-reset').attr('src', 'images/NEXT_BUTTON_NORMAL.png');
+                }
+            }
+            var myattempt = parseInt(localStorage.getItem('attempt'));
+            localStorage.setItem('attempt', myattempt + 1);
+        });
+        $('.ans-reset').click(function() {
+            if (win == 1) {
+                localStorage.setItem('attempt', 0);
+                window.open('../activity3/index.html', '_self');
+                return false;
+            }
+            if (localStorage.getItem('attempt') <= 1) {
+                location.reload();
+            } else {
+                localStorage.setItem('attempt', 0);
+                window.open('../activity3/index.html', '_self');
+            }
+        });
+        $(".allownumericwithdecimal").on("keypress keyup blur", function(event) {
+            //this.value = this.value.replace(/[^0-9\.]/g,'');
+            $(this).val($(this).val().replace(/[^0-9\.]/g, ''));
+            if ((event.which != 46 || $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
+        });
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Activity 1 | Question 4</title>
+    <link href="css/layout.css" rel="stylesheet"> </head>
+
+<body>
+    <div class="centerLayout">
+        <div class="container mainbg">
+            <div class="textfiled">
+                <textarea id="myanswer"></textarea>
+            </div>
+            <div class="submit"><img src="images/SUBMIT_NORMAL.png"></div>
+            <div class="reset"><img src="images/RESET_OVER_new.png"></div>
+            <div class="popup">
+                <div class="message">
+                    <p></p> <img src="images/RESET_NORMAL_new.png" class="ans-reset"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script>
+    $(function() {
+        $('.reset').click(function() {
+            location.reload();
+        });
+        $('.submit').click(function() {
+            $('.popup').css('display', 'block');
+            $('.message p').html('ఒక ఐస్ ముక్క సైజు ఇంకొక ఐస్ ముక్క సైజులో సగం ఉన్నప్పుడు,  గ్లాసు అంచు వరకు నింపబడానికి కావలసిన ఐస్ ముక్కల సంఖ్య రెండు రెట్లు అని గమనించండి. అట్టి సందర్భాలలో, గ్లాసు అంచు వరకు నింపడానికి కావలసిన ఐస్ ముక్కల సంఖ్య ఐస్ ముక్కల  సైజుకి విలోమ అనుపాతంలో ఉంటుంది. ');
+            $('.ans-reset').attr('src', 'images/NEXT_BUTTON_NORMAL.png');
+        });
+        $('.ans-reset').click(function() {
+            window.open('../activity5/index.html', '_self');
+            return false;
+        });
+    });
+
+</script>
+
+</html>
