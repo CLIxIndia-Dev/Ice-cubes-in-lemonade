@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Activity 2 | Question 1</title>
+    <link href="css/layout1.css" rel="stylesheet"> </head>
+
+<body>
+    <div class="centerLayout">
+        <div class="container mainbg">
+            <div class="tray"></div>
+            <div class="glass"><img src="images1/0.png" id="myglass"></div>
+            <div class="cube1 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube2 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube3 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube4 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube5 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube6 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube7 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube8 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube9 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube10 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube11 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube12 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube13 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube14 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube15 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube16 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube17 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube18 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube19 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube20 cubes"><img src="images1/ICE.png"> </div>
+            <div class="cube21 cubes"><img src="images1/ICE.png"> </div>
+            
+            <div class="submit"><img src="images1/SUBMIT_NORMAL.png"></div>
+            <div class="reset"><img src="images1/RESET_NORMAL_new.png"></div>
+            <div class="popup">
+                <div class="message">
+                    <p>అయ్యో! లెమనేడ్ ఒలికి పోయింది! కొన్ని ఐస్ ముక్కలు చేర్చి ప్రయత్నించండి.</p> <img src="images1/RESET_NORMAL_new.png" class="ans-reset"> </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/icecubes.js"></script>
+<script src="js/cookie.js"></script>
+<script>
+    var counter = 0;
+    var win = 0;
+    var qid = 1;
+    var playattempt = 0;
+
+    var lng = 'te';
+    $(function() {
+        icecubes.readData();
+        icecubes.addQuestion('అమన్ మరియు జమునికి ఇంకా దాహంగా ఉన్నది, ఈ సారి పెద్ద గ్లాసులలో  లెమనేడ్ కొన్నారు. ఐదు నిమిషాల తరువాత, జముని లెమనేడ్ గ్లాసు  40% నిండింది కాగా అమన్  లెమనేడ్ గ్లాసు 70% నిండింది.  చాలా ఎండగా ఉన్నది కావున ఐస్ అంతా కరిగి పోయింది. జముని మరింత ఐస్ కలపడైనికి సహాయపడండి మరియు అంచు వరకూ నింపండి.');
+        playattempt = parseInt(localStorage.getItem('playattempt'));
+        $('.reset').click(function() {
+            location.reload();
+        });
+
+        $('.submit').click(function() {
+            if (parseInt(localStorage.getItem('playattempt')) == 0) {
+                if (counter >= 0 && counter <= 17) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('లాసు ఇంకా పూర్తిగా నిండలేదు. మరిన్ని ఐస్ ముక్కలు కలిపి ప్రయత్నించండి.');
+                    icecubes.addAnswer(counter + '-ice-cubes', false, parseInt(localStorage.getItem('playattempt')));
+                } else if (counter >= 19) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('అయ్యో! లెమనేడ్ ఒలికి పోయింది! కొన్ని ఐస్ ముక్కలు చేర్చి ప్రయత్నించండి.');
+                    icecubes.addAnswer(counter + '-ice-cubes', false, parseInt(localStorage.getItem('playattempt')));
+                } else if (counter == 3) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('బాగా చేసారు.  ఇప్పుడు గ్లాసు నిండుగా ఉన్నది.');
+                    $('.ans-reset').attr('src', 'images1/NEXT_BUTTON_NORMAL.png');
+                    win = 1;
+                    icecubes.addAnswer(counter + '-ice-cubes', true, parseInt(localStorage.getItem('playattempt')));
+                }
+            } else {
+                if (counter == 18) {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('బాగా చేసారు.  ఇప్పుడు గ్లాసు నిండుగా ఉన్నది. ');
+                    $('.ans-reset').attr('src', 'images1/NEXT_BUTTON_NORMAL.png');
+                    win = 1;
+                    icecubes.addAnswer(counter + '-ice-cubes', true, parseInt(localStorage.getItem('playattempt')));
+                } else {
+                    $('.popup').css('display', 'block');
+                    $('.message p').html('జముని గ్లాసు 40% నిండింది. మిగిలిన 60% గ్లాసు సింపడానికి 18 ఐస్ ముక్కలు అవసరమవుతాయి.');
+                    $('.ans-reset').attr('src', 'images1/NEXT_BUTTON_NORMAL.png');
+                    icecubes.addAnswer(counter + '-ice-cubes', false, parseInt(localStorage.getItem('playattempt')));
+                }
+            }
+            playattempt = parseInt(localStorage.getItem('playattempt')) + 1;
+            localStorage.setItem('playattempt', playattempt);
+        });
+        /*Final*/
+
+        $('.ans-reset').click(function() {
+            if (win == 1) {
+                localStorage.setItem('playattempt', 0);
+                myData.appData.attempt[qid - 1].clue_endTime = timeStamp();
+                myData.appData.attempt[qid - 1].createdAt = timeStamp();
+                icecubes.save();
+                window.open('activity2.html', '_self');
+                return false;
+            }
+            if (playattempt <= 1) {
+                location.reload();
+            } else {
+                localStorage.setItem('playattempt', 0);
+                myData.appData.attempt[qid - 1].clue_endTime = timeStamp();
+                myData.appData.attempt[qid - 1].createdAt = timeStamp();
+                icecubes.save();
+                window.open('activity2.html', '_self');
+            }
+        });
+
+        $(".cubes img").draggable({
+            revert: "invalid",
+            refreshPositions: true,
+            drag: function(event, ui) {
+                ui.helper.addClass("draggable");
+            },
+            stop: function(event, ui) {
+                ui.helper.removeClass("draggable");
+                var image = this.src.split("/")[this.src.split("/").length - 1];
+                if ($.ui.ddmanager.drop(ui.helper.data("draggable"), event)) {
+                    counter = counter + 1;
+                    if (counter <= 21) {
+                        $('#myglass').attr('src', 'images1/' + counter + '.png');
+                        $(this).css('display', 'none');
+                    }
+                } else {
+                    //alert(image + " not dropped.");
+                }
+            }
+        });
+
+        $(".glass").droppable({
+            drop: function(event, ui) {
+                if ($("#dvDest img").length == 0) {
+                    $("#dvDest").html("");
+                }
+                ui.draggable.addClass("dropped");
+                $("#dvDest").append(ui.draggable);
+            }
+        });
+    });
+
+</script>
+
+</html>

@@ -3,24 +3,52 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="refresh" content="0; URL='activity1/index.html'" />    
     <title>Questionnaire</title>
-    
+
     <style>
-    
-        body{
+        body {
             margin: 0;
             background: none;
+            text-align: center;
         }
+
+        .start-btn {
+            width: 91px;
+            height: 46px;
+            margin: 20px auto;
+            cursor: pointer;
+            background: url(common/START_BUTTON_NORMAL.png) no-repeat;
+        }
+
     </style>
 
 </head>
 
 <body>
 
-    
+    <a onclick="start();">
+        <div class="start-btn"></div>
+    </a>
 
 </body>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-ui.min.js"></script>
+<script src="js/icecubes.js"></script>
+<script src="js/cookie.js"></script>
+
+<script>
+    $(function() {
+        setuserdetail();
+        start();
+    });
+
+    function start() {
+        localStorage.setItem('playattempt', 0);
+        icecubes.start('en');
+        window.location.href = "activity1.html";
+    }
+
+</script>
 
 
 </html>
